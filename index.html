@@ -1,35 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tableau Dashboard Embed</title>
+  <title>Embedded Tableau Dashboard</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f0f2f5;
-      padding: 2rem;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      padding: 40px;
     }
+
     .container {
       max-width: 1000px;
       margin: auto;
-      background: white;
+      background: #fff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     }
-    iframe {
+
+    h2 {
+      margin-top: 0;
+      color: #2a3f5f;
+    }
+
+    .tableauPlaceholder {
       width: 100%;
       height: 700px;
-      border: none;
-      border-radius: 8px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>📊 Tableau Dashboard</h2>
-    <p>Click on the regions in the chart below to drill down into sales data.</p>
-    <iframe src="https://public.tableau.com/views/SampleSuperstore_15949106629610/Overview" allowfullscreen></iframe>
+    <h2>📊 Tableau Sales Drill-Down Dashboard</h2>
+    <p>Click on a region or category in the dashboard below to explore detailed insights.</p>
+
+    <div id="vizContainer" class="tableauPlaceholder"></div>
   </div>
+
+  <!-- Tableau JS API -->
+  <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+  <script>
+    const containerDiv = document.getElementById("vizContainer");
+    const url = "https://public.tableau.com/views/SampleSuperstore_15949106629610/Overview";
+
+    const options = {
+      hideTabs: true,
+      width: containerDiv.offsetWidth + "px",
+      height: "700px"
+    };
+
+    new tableau.Viz(containerDiv, url, options);
+  </script>
 </body>
 </html>
